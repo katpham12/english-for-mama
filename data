@@ -1,0 +1,84 @@
+// ============================================================
+// ENGLISH FOR MAMA — MONTHLY CONTENT FILE
+// Edit this file every month to update phrases and quiz.
+// After editing, click "Commit changes" in GitHub.
+// Vercel will auto-update the website in ~30 seconds.
+// ============================================================
+
+// ── PHRASES ─────────────────────────────────────────────────
+// To add a phrase: copy any line and change the text.
+// cat  = category name (shows as a label on the app)
+// en   = English phrase
+// vn   = Vietnamese translation
+// ────────────────────────────────────────────────────────────
+const PHRASES = [
+  {cat:'Greetings / Chào hỏi',           en:'Good morning!',                    vn:'Chào buổi sáng!'},
+  {cat:'Greetings / Chào hỏi',           en:'Good afternoon!',                  vn:'Chào buổi chiều!'},
+  {cat:'Greetings / Chào hỏi',           en:'How are you?',                     vn:'Bạn có khỏe không?'},
+  {cat:'Greetings / Chào hỏi',           en:"I'm fine, thank you.",             vn:'Tôi khỏe, cảm ơn.'},
+  {cat:'Greetings / Chào hỏi',           en:'Goodbye! See you later.',          vn:'Tạm biệt! Hẹn gặp lại.'},
+
+  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you help me, please?',        vn:'Bạn có thể giúp tôi không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Please speak more slowly.',       vn:'Bạn nói chậm hơn được không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',  en:"I don't understand.",             vn:'Tôi không hiểu.'},
+  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you repeat that?',            vn:'Bạn có thể nói lại không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you write it down?',          vn:'Bạn có thể viết ra giấy không?'},
+
+  {cat:'At the store / Ở cửa hàng',      en:'How much does this cost?',        vn:'Cái này bao nhiêu tiền?'},
+  {cat:'At the store / Ở cửa hàng',      en:'Can I pay by card?',              vn:'Tôi có thể trả bằng thẻ không?'},
+  {cat:'At the store / Ở cửa hàng',      en:'Where is the bathroom?',          vn:'Phòng vệ sinh ở đâu?'},
+  {cat:'At the store / Ở cửa hàng',      en:"I'm just looking, thank you.",    vn:'Tôi chỉ xem thôi, cảm ơn.'},
+
+  {cat:'Ordering food / Gọi đồ ăn',      en:'Can I see the menu?',             vn:'Cho tôi xem thực đơn được không?'},
+  {cat:'Ordering food / Gọi đồ ăn',      en:'I would like this one, please.',  vn:'Cho tôi cái này.'},
+  {cat:'Ordering food / Gọi đồ ăn',      en:'No spicy, please.',               vn:'Không cay nhé.'},
+  {cat:'Ordering food / Gọi đồ ăn',      en:'Can I have water, please?',       vn:'Cho tôi nước lọc được không?'},
+  {cat:'Ordering food / Gọi đồ ăn',      en:'Check, please.',                  vn:'Cho tôi tính tiền.'},
+
+  {cat:'At the doctor / Ở bệnh viện',    en:"I don't feel well.",              vn:'Tôi không khỏe.'},
+  {cat:'At the doctor / Ở bệnh viện',    en:'I have a headache.',              vn:'Tôi bị đau đầu.'},
+  {cat:'At the doctor / Ở bệnh viện',    en:'I need to see a doctor.',         vn:'Tôi cần gặp bác sĩ.'},
+  {cat:'At the doctor / Ở bệnh viện',    en:'I am allergic to...',             vn:'Tôi bị dị ứng với...'},
+
+  {cat:'Getting around / Di chuyển',     en:'Where is the bus stop?',          vn:'Trạm xe buýt ở đâu?'},
+  {cat:'Getting around / Di chuyển',     en:'How do I get to...?',             vn:'Tôi đi đến... bằng cách nào?'},
+  {cat:'Getting around / Di chuyển',     en:'Turn left / Turn right.',         vn:'Rẽ trái / Rẽ phải.'},
+  {cat:'Getting around / Di chuyển',     en:'Can you call me a taxi?',         vn:'Bạn có thể gọi taxi cho tôi không?'},
+];
+
+// ── QUIZ ─────────────────────────────────────────────────────
+// q    = the question
+// opts = 4 answer choices [A, B, C, D]
+// a    = index of correct answer (0=A, 1=B, 2=C, 3=D)
+// ────────────────────────────────────────────────────────────
+const QUIZ = [
+  {q:'What does "Good morning" mean?',
+   opts:['Chào buổi sáng','Tạm biệt','Xin lỗi','Cảm ơn'], a:0},
+
+  {q:'How do you say "Tôi không hiểu"?',
+   opts:['I am tired','I need help',"I don't understand","I'm fine"], a:2},
+
+  {q:'You want to pay. What do you say?',
+   opts:['Can I see the menu?','Check, please.','No spicy, please.',"I'm just looking."], a:1},
+
+  {q:'"Please speak more slowly" means...?',
+   opts:['Giúp tôi với','Nói lại đi','Nói chậm hơn','Viết ra giấy'], a:2},
+
+  {q:'You feel sick. What do you say first?',
+   opts:['I have a headache',"I don't feel well.",'I need water.','Turn left.'], a:1},
+
+  {q:'How do you ask where the bathroom is?',
+   opts:['How much?','Bus stop?','Where is the bathroom?','Pay by card?'], a:2},
+
+  {q:'At a restaurant, how do you ask for water?',
+   opts:['Check, please.','No spicy.','Can I see the menu?','Can I have water, please?'], a:3},
+
+  {q:'"Rẽ trái" means...?',
+   opts:['Turn right','Go straight','Turn left','Stop here'], a:2},
+
+  {q:'You want to know the price. You say:',
+   opts:['Do you have this?','How much does this cost?','Can I pay by card?','I would like this.'], a:1},
+
+  {q:'"Tôi bị dị ứng với..." means?',
+   opts:['I have a headache','I need a doctor','I am allergic to...','I feel sick'], a:2},
+];
