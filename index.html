@@ -9,8 +9,9 @@
     :root {
       --bg: #f9f8f5; --surface: #ffffff; --border: #e4e2db;
       --text: #1a1a18; --muted: #6b6963; --hint: #9b9790;
-      --blue-bg: #eef4fd; --blue: #1a5fb4; --green-bg: #edf7ed;
-      --green: #1d6b2e; --red-bg: #fdeeed; --red: #b91c1c;
+      --blue-bg: #eef4fd; --blue: #1a5fb4;
+      --green-bg: #edf7ed; --green: #1d6b2e;
+      --red-bg: #fdeeed; --red: #b91c1c;
       --radius: 12px; --radius-sm: 8px;
     }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -40,12 +41,9 @@
     .listen-btn:hover { background: var(--bg); }
     .action-row { display: flex; gap: 8px; }
     .action-btn { flex: 1; padding: 11px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); font-size: 13px; cursor: pointer; font-family: inherit; color: var(--text); transition: all .12s; text-align: center; }
-    .action-btn:hover { background: var(--bg); }
     .action-btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
-    .action-btn.primary:hover { opacity: .9; }
     .encourage { display: none; align-items: center; gap: 12px; background: var(--green-bg); border: 1px solid #a8d8a8; border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
     .encourage.show { display: flex; }
-    .enc-icon { font-size: 28px; }
     .enc-msg { font-size: 14px; font-weight: 600; color: var(--green); }
     .enc-sub { font-size: 12px; color: var(--green); opacity: .85; margin-top: 2px; }
     .cat-pill { display: inline-block; font-size: 11px; font-weight: 600; background: var(--blue-bg); color: var(--blue); border-radius: 20px; padding: 3px 10px; margin: 12px 0 8px; }
@@ -53,8 +51,7 @@
     .phrase-row:last-child { border-bottom: none; padding-bottom: 0; }
     .phrase-en { font-size: 15px; font-weight: 500; }
     .phrase-vn { font-size: 13px; color: var(--muted); margin-top: 2px; }
-    .play-btn { flex-shrink: 0; padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; font-size: 12px; cursor: pointer; color: var(--muted); font-family: inherit; transition: all .12s; white-space: nowrap; }
-    .play-btn:hover { background: var(--bg); }
+    .play-btn { flex-shrink: 0; padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent; font-size: 12px; cursor: pointer; color: var(--muted); font-family: inherit; white-space: nowrap; }
     .quiz-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .quiz-meta span { font-size: 12px; color: var(--muted); }
     .score-pill { background: var(--blue-bg); color: var(--blue); border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
@@ -79,7 +76,7 @@
     .done-msg { font-size: 14px; color: var(--muted); }
     .done-msg .vn { display: block; font-size: 13px; margin-top: 4px; }
     .retry-btn { margin-top: 16px; padding: 11px 28px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg); font-size: 14px; cursor: pointer; font-family: inherit; color: var(--text); }
-    @media (max-width: 400px) { .quiz-grid { grid-template-columns: 1fr; } .alpha-grid { grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); } }
+    @media (max-width: 400px) { .quiz-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -96,7 +93,7 @@
   </div>
   <div id="tab-abc">
     <div class="encourage" id="enc-box">
-      <span class="enc-icon">🎉</span>
+      <span style="font-size:28px">🎉</span>
       <div><div class="enc-msg" id="enc-msg"></div><div class="enc-sub" id="enc-sub"></div></div>
     </div>
     <div class="card">
@@ -148,96 +145,59 @@
     </div>
   </div>
 </div>
-
-<!-- data.js loads the PHRASES and QUIZ arrays -->
-
-// ============================================================
-// ENGLISH FOR MAMA — MONTHLY CONTENT FILE
-// Edit this file every month to update phrases and quiz.
-// After editing, click "Commit changes" in GitHub.
-// Vercel will auto-update the website in ~30 seconds.
-// ============================================================
-
-// ── PHRASES ─────────────────────────────────────────────────
-// To add a phrase: copy any line and change the text.
-// cat  = category name (shows as a label on the app)
-// en   = English phrase
-// vn   = Vietnamese translation
-// ────────────────────────────────────────────────────────────
-const PHRASES = [
-  {cat:'Greetings / Chào hỏi',           en:'Good morning!',                    vn:'Chào buổi sáng!'},
-  {cat:'Greetings / Chào hỏi',           en:'Good afternoon!',                  vn:'Chào buổi chiều!'},
-  {cat:'Greetings / Chào hỏi',           en:'How are you?',                     vn:'Bạn có khỏe không?'},
-  {cat:'Greetings / Chào hỏi',           en:"I'm fine, thank you.",             vn:'Tôi khỏe, cảm ơn.'},
-  {cat:'Greetings / Chào hỏi',           en:'Goodbye! See you later.',          vn:'Tạm biệt! Hẹn gặp lại.'},
-
-  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you help me, please?',        vn:'Bạn có thể giúp tôi không?'},
-  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Please speak more slowly.',       vn:'Bạn nói chậm hơn được không?'},
-  {cat:'Asking for help / Nhờ giúp đỡ',  en:"I don't understand.",             vn:'Tôi không hiểu.'},
-  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you repeat that?',            vn:'Bạn có thể nói lại không?'},
-  {cat:'Asking for help / Nhờ giúp đỡ',  en:'Can you write it down?',          vn:'Bạn có thể viết ra giấy không?'},
-
-  {cat:'At the store / Ở cửa hàng',      en:'How much does this cost?',        vn:'Cái này bao nhiêu tiền?'},
-  {cat:'At the store / Ở cửa hàng',      en:'Can I pay by card?',              vn:'Tôi có thể trả bằng thẻ không?'},
-  {cat:'At the store / Ở cửa hàng',      en:'Where is the bathroom?',          vn:'Phòng vệ sinh ở đâu?'},
-  {cat:'At the store / Ở cửa hàng',      en:"I'm just looking, thank you.",    vn:'Tôi chỉ xem thôi, cảm ơn.'},
-
-  {cat:'Ordering food / Gọi đồ ăn',      en:'Can I see the menu?',             vn:'Cho tôi xem thực đơn được không?'},
-  {cat:'Ordering food / Gọi đồ ăn',      en:'I would like this one, please.',  vn:'Cho tôi cái này.'},
-  {cat:'Ordering food / Gọi đồ ăn',      en:'No spicy, please.',               vn:'Không cay nhé.'},
-  {cat:'Ordering food / Gọi đồ ăn',      en:'Can I have water, please?',       vn:'Cho tôi nước lọc được không?'},
-  {cat:'Ordering food / Gọi đồ ăn',      en:'Check, please.',                  vn:'Cho tôi tính tiền.'},
-
-  {cat:'At the doctor / Ở bệnh viện',    en:"I don't feel well.",              vn:'Tôi không khỏe.'},
-  {cat:'At the doctor / Ở bệnh viện',    en:'I have a headache.',              vn:'Tôi bị đau đầu.'},
-  {cat:'At the doctor / Ở bệnh viện',    en:'I need to see a doctor.',         vn:'Tôi cần gặp bác sĩ.'},
-  {cat:'At the doctor / Ở bệnh viện',    en:'I am allergic to...',             vn:'Tôi bị dị ứng với...'},
-
-  {cat:'Getting around / Di chuyển',     en:'Where is the bus stop?',          vn:'Trạm xe buýt ở đâu?'},
-  {cat:'Getting around / Di chuyển',     en:'How do I get to...?',             vn:'Tôi đi đến... bằng cách nào?'},
-  {cat:'Getting around / Di chuyển',     en:'Turn left / Turn right.',         vn:'Rẽ trái / Rẽ phải.'},
-  {cat:'Getting around / Di chuyển',     en:'Can you call me a taxi?',         vn:'Bạn có thể gọi taxi cho tôi không?'},
-];
-
-// ── QUIZ ─────────────────────────────────────────────────────
-// q    = the question
-// opts = 4 answer choices [A, B, C, D]
-// a    = index of correct answer (0=A, 1=B, 2=C, 3=D)
-// ────────────────────────────────────────────────────────────
-const QUIZ = [
-  {q:'What does "Good morning" mean?',
-   opts:['Chào buổi sáng','Tạm biệt','Xin lỗi','Cảm ơn'], a:0},
-
-  {q:'How do you say "Tôi không hiểu"?',
-   opts:['I am tired','I need help',"I don't understand","I'm fine"], a:2},
-
-  {q:'You want to pay. What do you say?',
-   opts:['Can I see the menu?','Check, please.','No spicy, please.',"I'm just looking."], a:1},
-
-  {q:'"Please speak more slowly" means...?',
-   opts:['Giúp tôi với','Nói lại đi','Nói chậm hơn','Viết ra giấy'], a:2},
-
-  {q:'You feel sick. What do you say first?',
-   opts:['I have a headache',"I don't feel well.",'I need water.','Turn left.'], a:1},
-
-  {q:'How do you ask where the bathroom is?',
-   opts:['How much?','Bus stop?','Where is the bathroom?','Pay by card?'], a:2},
-
-  {q:'At a restaurant, how do you ask for water?',
-   opts:['Check, please.','No spicy.','Can I see the menu?','Can I have water, please?'], a:3},
-
-  {q:'"Rẽ trái" means...?',
-   opts:['Turn right','Go straight','Turn left','Stop here'], a:2},
-
-  {q:'You want to know the price. You say:',
-   opts:['Do you have this?','How much does this cost?','Can I pay by card?','I would like this.'], a:1},
-
-  {q:'"Tôi bị dị ứng với..." means?',
-   opts:['I have a headache','I need a doctor','I am allergic to...','I feel sick'], a:2},
-];
-
 <script>
-const LETTERS = [
+// ============================================================
+// MONTHLY UPDATE SECTION — edit phrases and quiz here
+// ============================================================
+
+var PHRASES = [
+  {cat:'Greetings / Chào hỏi',en:'Good morning!',vn:'Chào buổi sáng!'},
+  {cat:'Greetings / Chào hỏi',en:'Good afternoon!',vn:'Chào buổi chiều!'},
+  {cat:'Greetings / Chào hỏi',en:'How are you?',vn:'Bạn có khỏe không?'},
+  {cat:'Greetings / Chào hỏi',en:"I'm fine, thank you.",vn:'Tôi khỏe, cảm ơn.'},
+  {cat:'Greetings / Chào hỏi',en:'Goodbye! See you later.',vn:'Tạm biệt! Hẹn gặp lại.'},
+  {cat:'Asking for help / Nhờ giúp đỡ',en:'Can you help me, please?',vn:'Bạn có thể giúp tôi không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',en:'Please speak more slowly.',vn:'Bạn nói chậm hơn được không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',en:"I don't understand.",vn:'Tôi không hiểu.'},
+  {cat:'Asking for help / Nhờ giúp đỡ',en:'Can you repeat that?',vn:'Bạn có thể nói lại không?'},
+  {cat:'Asking for help / Nhờ giúp đỡ',en:'Can you write it down?',vn:'Bạn có thể viết ra giấy không?'},
+  {cat:'At the store / Ở cửa hàng',en:'How much does this cost?',vn:'Cái này bao nhiêu tiền?'},
+  {cat:'At the store / Ở cửa hàng',en:'Can I pay by card?',vn:'Tôi có thể trả bằng thẻ không?'},
+  {cat:'At the store / Ở cửa hàng',en:'Where is the bathroom?',vn:'Phòng vệ sinh ở đâu?'},
+  {cat:'At the store / Ở cửa hàng',en:"I'm just looking, thank you.",vn:'Tôi chỉ xem thôi, cảm ơn.'},
+  {cat:'Ordering food / Gọi đồ ăn',en:'Can I see the menu?',vn:'Cho tôi xem thực đơn được không?'},
+  {cat:'Ordering food / Gọi đồ ăn',en:'I would like this one, please.',vn:'Cho tôi cái này.'},
+  {cat:'Ordering food / Gọi đồ ăn',en:'No spicy, please.',vn:'Không cay nhé.'},
+  {cat:'Ordering food / Gọi đồ ăn',en:'Can I have water, please?',vn:'Cho tôi nước lọc được không?'},
+  {cat:'Ordering food / Gọi đồ ăn',en:'Check, please.',vn:'Cho tôi tính tiền.'},
+  {cat:'At the doctor / Ở bệnh viện',en:"I don't feel well.",vn:'Tôi không khỏe.'},
+  {cat:'At the doctor / Ở bệnh viện',en:'I have a headache.',vn:'Tôi bị đau đầu.'},
+  {cat:'At the doctor / Ở bệnh viện',en:'I need to see a doctor.',vn:'Tôi cần gặp bác sĩ.'},
+  {cat:'At the doctor / Ở bệnh viện',en:'I am allergic to...',vn:'Tôi bị dị ứng với...'},
+  {cat:'Getting around / Di chuyển',en:'Where is the bus stop?',vn:'Trạm xe buýt ở đâu?'},
+  {cat:'Getting around / Di chuyển',en:'How do I get to...?',vn:'Tôi đi đến... bằng cách nào?'},
+  {cat:'Getting around / Di chuyển',en:'Turn left / Turn right.',vn:'Rẽ trái / Rẽ phải.'},
+  {cat:'Getting around / Di chuyển',en:'Can you call me a taxi?',vn:'Bạn có thể gọi taxi cho tôi không?'}
+];
+
+var QUIZ = [
+  {q:'What does "Good morning" mean?',opts:['Chào buổi sáng','Tạm biệt','Xin lỗi','Cảm ơn'],a:0},
+  {q:'How do you say "Tôi không hiểu"?',opts:['I am tired','I need help',"I don't understand","I'm fine"],a:2},
+  {q:'You want to pay. What do you say?',opts:['Can I see the menu?','Check, please.','No spicy, please.',"I'm just looking."],a:1},
+  {q:'"Please speak more slowly" means...?',opts:['Giúp tôi với','Nói lại đi','Nói chậm hơn','Viết ra giấy'],a:2},
+  {q:'You feel sick. What do you say first?',opts:['I have a headache',"I don't feel well.",'I need water.','Turn left.'],a:1},
+  {q:'How do you ask where the bathroom is?',opts:['How much?','Bus stop?','Where is the bathroom?','Pay by card?'],a:2},
+  {q:'At a restaurant, how do you ask for water?',opts:['Check, please.','No spicy.','Can I see the menu?','Can I have water, please?'],a:3},
+  {q:'"Rẽ trái" means...?',opts:['Turn right','Go straight','Turn left','Stop here'],a:2},
+  {q:'You want to know the price. You say:',opts:['Do you have this?','How much does this cost?','Can I pay by card?','I would like this.'],a:1},
+  {q:'"Tôi bị dị ứng với..." means?',opts:['I have a headache','I need a doctor','I am allergic to...','I feel sick'],a:2}
+];
+
+// ============================================================
+// APP CODE — do not edit below this line
+// ============================================================
+
+var LETTERS = [
   {l:'A',sound:'like "ah" in spa',viet:'giống "a" trong "cha"',word:'Apple'},
   {l:'B',sound:'like "buh"',viet:'giống "b" trong "ba"',word:'Banana'},
   {l:'C',sound:'like "kuh" or "suh"',viet:'giống "c" trong "cá"',word:'Cat'},
@@ -263,168 +223,187 @@ const LETTERS = [
   {l:'W',sound:'make lips round',viet:'không có trong tiếng Việt — môi tròn',word:'Water'},
   {l:'X',sound:'like "ks" or "z"',viet:'giống "ks" ghép lại',word:'X-ray'},
   {l:'Y',sound:'like "yuh"',viet:'giống "y" trong "yêu"',word:'Yes'},
-  {l:'Z',sound:'like a bee — "zzzz"',viet:'không có trong tiếng Việt',word:'Zoo'},
+  {l:'Z',sound:'like a bee — "zzzz"',viet:'không có trong tiếng Việt',word:'Zoo'}
 ];
 
-let done=JSON.parse(localStorage.getItem('mama_done')||'[]');
-let streak=parseInt(localStorage.getItem('mama_streak')||'0');
-let lastDay=localStorage.getItem('mama_lastday')||'';
-let currentLetter='';
-let qIdx=0,score=0,answered=false;
+var done = JSON.parse(localStorage.getItem('mama_done') || '[]');
+var streak = parseInt(localStorage.getItem('mama_streak') || '0');
+var lastDay = localStorage.getItem('mama_lastday') || '';
+var currentLetter = '';
+var qIdx = 0, score = 0, answered = false;
 
-function initStreak(){
-  const today=new Date().toDateString();
-  if(lastDay!==today){
-    const yesterday=new Date(Date.now()-86400000).toDateString();
-    streak=(lastDay===yesterday)?streak+1:1;
-    localStorage.setItem('mama_streak',streak);
-    localStorage.setItem('mama_lastday',today);
+function initStreak() {
+  var today = new Date().toDateString();
+  if (lastDay !== today) {
+    var yesterday = new Date(Date.now() - 86400000).toDateString();
+    streak = (lastDay === yesterday) ? streak + 1 : 1;
+    localStorage.setItem('mama_streak', streak);
+    localStorage.setItem('mama_lastday', today);
   }
-  const el=document.getElementById('streak-text');
-  el.innerHTML=streak>1?'<strong>'+streak+'</strong> ngày liên tiếp — '+streak+'-day streak! Cô giỏi lắm! 🌸':'Hôm nay bắt đầu học nhé! — Start learning today!';
+  var el = document.getElementById('streak-text');
+  el.innerHTML = streak > 1
+    ? '<strong>' + streak + '</strong> ngày liên tiếp — ' + streak + '-day streak! Cô giỏi lắm! 🌸'
+    : 'Hôm nay bắt đầu học nhé! — Start learning today!';
 }
 
-function buildAlphabet(){
-  const grid=document.getElementById('alpha-grid');
-  grid.innerHTML='';
-  LETTERS.forEach(({l})=>{
-    const btn=document.createElement('button');
-    btn.className='letter-btn'+(done.includes(l)?' done':'');
-    btn.textContent=l;
-    btn.onclick=()=>showLetter(l);
+function buildAlphabet() {
+  var grid = document.getElementById('alpha-grid');
+  grid.innerHTML = '';
+  LETTERS.forEach(function(item) {
+    var btn = document.createElement('button');
+    btn.className = 'letter-btn' + (done.indexOf(item.l) >= 0 ? ' done' : '');
+    btn.textContent = item.l;
+    btn.onclick = function() { showLetter(item.l); };
     grid.appendChild(btn);
   });
   updateEncourage();
 }
 
-function updateEncourage(){
-  const box=document.getElementById('enc-box');
-  if(done.length===0){box.classList.remove('show');return;}
+function updateEncourage() {
+  var box = document.getElementById('enc-box');
+  if (done.length === 0) { box.classList.remove('show'); return; }
   box.classList.add('show');
-  const pct=Math.round(done.length/26*100);
-  const msgs=['Great start! / Bắt đầu thật tốt!','Keep going! / Tiếp tục nào!','Almost halfway! / Gần một nửa rồi!','More than half! / Hơn một nửa rồi!','Almost done! / Gần xong rồi!','All 26 letters! / Cô học hết 26 chữ cái rồi! 🎉'];
-  const idx=done.length===26?5:Math.min(Math.floor(pct/20),4);
-  document.getElementById('enc-msg').textContent=msgs[idx];
-  document.getElementById('enc-sub').textContent=done.length+' / 26 chữ cái — '+pct+'% complete';
+  var pct = Math.round(done.length / 26 * 100);
+  var msgs = [
+    'Great start! / Bắt đầu thật tốt!',
+    'Keep going! / Tiếp tục nào!',
+    'Almost halfway! / Gần một nửa rồi!',
+    'More than half! / Hơn một nửa rồi!',
+    'Almost done! / Gần xong rồi!',
+    'All 26 letters! / Cô học hết 26 chữ cái rồi! 🎉'
+  ];
+  var idx = done.length === 26 ? 5 : Math.min(Math.floor(pct / 20), 4);
+  document.getElementById('enc-msg').textContent = msgs[idx];
+  document.getElementById('enc-sub').textContent = done.length + ' / 26 chữ cái — ' + pct + '% complete';
 }
 
-function showLetter(l){
-  const d=LETTERS.find(x=>x.l===l);
-  currentLetter=l;
-  document.getElementById('det-letter').textContent=l+' / '+l.toLowerCase();
-  document.getElementById('det-sound').textContent=d.sound;
-  document.getElementById('det-viet').textContent=d.viet;
-  document.getElementById('det-word').textContent=d.word;
-  const detail=document.getElementById('letter-detail');
-  detail.style.display='block';
-  detail.scrollIntoView({behavior:'smooth'});
+function showLetter(l) {
+  var d = LETTERS.filter(function(x) { return x.l === l; })[0];
+  currentLetter = l;
+  document.getElementById('det-letter').textContent = l + ' / ' + l.toLowerCase();
+  document.getElementById('det-sound').textContent = d.sound;
+  document.getElementById('det-viet').textContent = d.viet;
+  document.getElementById('det-word').textContent = d.word;
+  var detail = document.getElementById('letter-detail');
+  detail.style.display = 'block';
+  detail.scrollIntoView({ behavior: 'smooth' });
 }
 
-function markDone(l){
-  if(!done.includes(l)){done.push(l);localStorage.setItem('mama_done',JSON.stringify(done));}
+function markDone(l) {
+  if (done.indexOf(l) < 0) { done.push(l); localStorage.setItem('mama_done', JSON.stringify(done)); }
   buildAlphabet();
-  document.getElementById('letter-detail').style.display='none';
+  document.getElementById('letter-detail').style.display = 'none';
 }
 
-function buildPhrases(){
-  const list=document.getElementById('phrase-list');
-  list.innerHTML='';
-  const cats=[...new Set(PHRASES.map(p=>p.cat))];
-  cats.forEach(cat=>{
-    const pill=document.createElement('div');
-    pill.className='cat-pill';
-    pill.textContent=cat;
+function buildPhrases() {
+  var list = document.getElementById('phrase-list');
+  list.innerHTML = '';
+  var cats = [];
+  PHRASES.forEach(function(p) { if (cats.indexOf(p.cat) < 0) cats.push(p.cat); });
+  cats.forEach(function(cat) {
+    var pill = document.createElement('div');
+    pill.className = 'cat-pill';
+    pill.textContent = cat;
     list.appendChild(pill);
-    PHRASES.filter(p=>p.cat===cat).forEach(p=>{
-      const row=document.createElement('div');
-      row.className='phrase-row';
-      const safe=p.en.replace(/'/g,"\\'");
-      row.innerHTML='<div style="flex:1"><div class="phrase-en">'+p.en+'</div><div class="phrase-vn">'+p.vn+'</div></div><button class="play-btn" onclick="speak(\''+safe+'\')">🔊 Nghe</button>';
+    PHRASES.filter(function(p) { return p.cat === cat; }).forEach(function(p) {
+      var row = document.createElement('div');
+      row.className = 'phrase-row';
+      var txt = document.createElement('div');
+      txt.style.flex = '1';
+      txt.innerHTML = '<div class="phrase-en">' + p.en + '</div><div class="phrase-vn">' + p.vn + '</div>';
+      var btn = document.createElement('button');
+      btn.className = 'play-btn';
+      btn.textContent = '🔊 Nghe';
+      btn.onclick = function() { speak(p.en); };
+      row.appendChild(txt);
+      row.appendChild(btn);
       list.appendChild(row);
     });
   });
 }
 
-function startQuiz(){
-  qIdx=0;score=0;answered=false;
-  document.getElementById('quiz-active').style.display='block';
-  document.getElementById('quiz-done').style.display='none';
+function startQuiz() {
+  qIdx = 0; score = 0; answered = false;
+  document.getElementById('quiz-active').style.display = 'block';
+  document.getElementById('quiz-done').style.display = 'none';
   loadQ();
 }
 
-function loadQ(){
-  if(qIdx>=QUIZ.length){showDone();return;}
-  answered=false;
-  const q=QUIZ[qIdx];
-  document.getElementById('quiz-q').textContent=q.q;
-  document.getElementById('quiz-fb').textContent='';
-  document.getElementById('quiz-fb').className='feedback';
+function loadQ() {
+  if (qIdx >= QUIZ.length) { showDone(); return; }
+  answered = false;
+  var q = QUIZ[qIdx];
+  document.getElementById('quiz-q').textContent = q.q;
+  document.getElementById('quiz-fb').textContent = '';
+  document.getElementById('quiz-fb').className = 'feedback';
   document.getElementById('next-btn').classList.remove('show');
-  document.getElementById('quiz-prog').style.width=(qIdx/QUIZ.length*100)+'%';
-  document.getElementById('quiz-score').textContent=score+' / '+qIdx;
-  document.getElementById('prog-lbl').textContent='Question '+(qIdx+1)+' of '+QUIZ.length+' / Câu '+(qIdx+1)+' trong '+QUIZ.length;
-  const grid=document.getElementById('quiz-opts');
-  grid.innerHTML='';
-  q.opts.forEach((o,i)=>{
-    const btn=document.createElement('button');
-    btn.className='opt-btn';btn.textContent=o;
-    btn.onclick=()=>answer(i,btn);
+  document.getElementById('quiz-prog').style.width = (qIdx / QUIZ.length * 100) + '%';
+  document.getElementById('quiz-score').textContent = score + ' / ' + qIdx;
+  document.getElementById('prog-lbl').textContent = 'Question ' + (qIdx + 1) + ' of ' + QUIZ.length + ' / Câu ' + (qIdx + 1) + ' trong ' + QUIZ.length;
+  var grid = document.getElementById('quiz-opts');
+  grid.innerHTML = '';
+  q.opts.forEach(function(o, i) {
+    var btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = o;
+    btn.onclick = function() { answer(i, btn); };
     grid.appendChild(btn);
   });
 }
 
-function answer(i,btn){
-  if(answered)return;
-  answered=true;
-  const q=QUIZ[qIdx];
-  document.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
-  document.querySelectorAll('.opt-btn')[q.a].classList.add('correct');
-  const fb=document.getElementById('quiz-fb');
-  if(i===q.a){
+function answer(i, btn) {
+  if (answered) return;
+  answered = true;
+  var q = QUIZ[qIdx];
+  var btns = document.querySelectorAll('.opt-btn');
+  btns.forEach(function(b) { b.disabled = true; });
+  btns[q.a].classList.add('correct');
+  var fb = document.getElementById('quiz-fb');
+  if (i === q.a) {
     score++;
     btn.classList.add('correct');
-    const good=['Đúng rồi! Correct! 🎉','Giỏi lắm! Well done! 🌟','Tuyệt vời! Excellent! 👏','Cô làm tốt lắm! Great job! 🌸'];
-    fb.innerHTML=good[Math.floor(Math.random()*good.length)];
-    fb.className='feedback good';
+    var good = ['Đúng rồi! Correct! 🎉','Giỏi lắm! Well done! 🌟','Tuyệt vời! Excellent! 👏','Cô làm tốt lắm! Great job! 🌸'];
+    fb.innerHTML = good[Math.floor(Math.random() * good.length)];
+    fb.className = 'feedback good';
     speak(q.opts[q.a]);
-  }else{
-    fb.innerHTML='Không đúng — Not this time, keep going! 💪';
-    fb.className='feedback bad';
+  } else {
+    fb.innerHTML = 'Không đúng — Not this time, keep going! 💪';
+    fb.className = 'feedback bad';
   }
   document.getElementById('next-btn').classList.add('show');
 }
 
-function nextQ(){qIdx++;loadQ();}
+function nextQ() { qIdx++; loadQ(); }
 
-function showDone(){
-  document.getElementById('quiz-active').style.display='none';
-  document.getElementById('quiz-done').style.display='block';
-  document.getElementById('final-score').textContent=score+' / '+QUIZ.length+' correct';
-  const pct=Math.round(score/QUIZ.length*100);
-  let en,vn;
-  if(pct>=80){en='Amazing, Mama!';vn='Cô xuất sắc lắm! Con tự hào về cô! 🥰';}
-  else if(pct>=50){en='Good job!';vn='Cô làm tốt lắm! Tiếp tục luyện tập nhé! 💪';}
-  else{en='Keep going!';vn='Không sao, cô thử lại nha! Lần sau sẽ tốt hơn! 🌸';}
-  document.getElementById('final-msg').innerHTML=en+' <span class="vn">'+vn+'</span>';
-  if(score>=QUIZ.length/2)speak('Congratulations! Great job Mama!');
+function showDone() {
+  document.getElementById('quiz-active').style.display = 'none';
+  document.getElementById('quiz-done').style.display = 'block';
+  document.getElementById('final-score').textContent = score + ' / ' + QUIZ.length + ' correct';
+  var pct = Math.round(score / QUIZ.length * 100);
+  var en, vn;
+  if (pct >= 80) { en = 'Amazing, Mama!'; vn = 'Cô xuất sắc lắm! Con tự hào về cô! 🥰'; }
+  else if (pct >= 50) { en = 'Good job!'; vn = 'Cô làm tốt lắm! Tiếp tục luyện tập nhé! 💪'; }
+  else { en = 'Keep going!'; vn = 'Không sao, cô thử lại nha! Lần sau sẽ tốt hơn! 🌸'; }
+  document.getElementById('final-msg').innerHTML = en + ' <span class="vn">' + vn + '</span>';
+  if (score >= QUIZ.length / 2) speak('Congratulations! Great job Mama!');
 }
 
-function speak(text){
-  if(!window.speechSynthesis)return;
+function speak(text) {
+  if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang='en-US';u.rate=0.8;
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.8;
   window.speechSynthesis.speak(u);
 }
 
-function show(tab){
-  ['abc','phrases','quiz'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
+function show(tab) {
+  ['abc','phrases','quiz'].forEach(function(t) {
+    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
   });
-  document.querySelectorAll('.nav button').forEach((b,i)=>{
-    b.classList.toggle('active',['abc','phrases','quiz'][i]===tab);
+  document.querySelectorAll('.nav button').forEach(function(b, i) {
+    b.classList.toggle('active', ['abc','phrases','quiz'][i] === tab);
   });
-  if(tab==='quiz')startQuiz();
+  if (tab === 'quiz') startQuiz();
 }
 
 initStreak();
